@@ -1,7 +1,8 @@
 version: '3'
 services:
   container:
-    image: opentosca/container:latest
+#    image: opentosca/container:latest
+    image: cesarchamal/opentosca_container:latest
     ports:
       - '1337:1337'
       - '1883:1883' # MQTT

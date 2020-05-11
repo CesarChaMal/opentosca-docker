@@ -1,0 +1,11 @@
+docker-compose -f "C:\IdeaProjects\opentosca-docker\docker-compose.yml" up -d --build
+docker-compose --env HTTP_PROXY="http://127.0.0.1:9000" -f "C:\IdeaProjects\opentosca-docker\docker-compose.yml" up -d --build
+docker-compose down -v
+
+docker login --username=cesarchamal -pba286129
+docker login -u "cesarchamal" -p "ba286129" docker.io
+docker tag 0f879449165f cesarchamal/opentosca_container:latest
+docker rmi cesarchamal/opentosca_container:latest
+docker push cesarchamal/opentosca_container:latest
+docker save cesarchamal/opentosca_container > opentosca_container.tar
+docker load --input opentosca_container.tar
