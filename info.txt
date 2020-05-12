@@ -1,4 +1,5 @@
 docker-compose -f "C:\IdeaProjects\opentosca-docker\docker-compose.yml" up -d --build
+docker-compose --verbose -f "C:\IdeaProjects\opentosca-docker\docker-compose.yml" up -d --build
 docker-compose --env HTTP_PROXY="http://127.0.0.1:9000" -f "C:\IdeaProjects\opentosca-docker\docker-compose.yml" up -d --build
 docker-compose down -v
 
@@ -9,3 +10,17 @@ docker rmi cesarchamal/opentosca_container:latest
 docker push cesarchamal/opentosca_container:latest
 docker save cesarchamal/opentosca_container > opentosca_container.tar
 docker load --input opentosca_container.tar
+
+docker stop $(docker ps -a | grep opentosca | awk '{print $1}')
+docker rm $(docker ps -a | grep opentosca | awk '{print $1}')
+docker rmi $(docker images | grep opentosca | awk '{ print $1}')
+docker rmi $(docker images | grep opentosca | awk '{ print $3}')
+
+for b in `docker images | grep opentosca | awk '{print $3}'`; do echo $b; done
+for b in `docker images | grep opentosca | awk '{print $3}'`; do echo $b | xargs docker rmi; done
+
+docker rmi -f $(docker images | grep "<none>" | awk '{print $3}') | awk '{print $4}'
+
+echo "Hello Tom" | awk '{$2="Adam"; print $0}'
+
+

@@ -90,7 +90,8 @@ services:
     cap_add:
       - NET_ADMIN
     ports:
-      - '81:80'
+#      - '81:80'
+      - '80:80'
     networks:
       - opentosca
 networks:
